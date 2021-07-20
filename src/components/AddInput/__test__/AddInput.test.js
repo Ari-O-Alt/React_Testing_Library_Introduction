@@ -1,8 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import AddInput from "../AddInput";
 
-test("renders learn react link", () => {
-  render(<AddInput />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+// we mock a function using Jest so we can pass it as a prop to AddInput
+const mockSetTodos = jest.fn();
+
+test("renders input element", () => {
+  render(<AddInput todos={[]} setTodos={mockSetTodos} />);
+  const inputElement = screen.getByPlaceholderText(/Add a new task here.../i);
+  expect(inputElement).toBeInTheDocument();
 });
