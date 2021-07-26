@@ -20,3 +20,13 @@ test("should be able to type in the input", () => {
   fireEvent.change(inputElement, { target: { value: "Walk the dog" } });
   expect(inputElement.value).toBe("Walk the dog");
 });
+
+//passes
+test("should have emtpy input when the button is clicked", () => {
+  render(<AddInput todos={[]} setTodos={mockSetTodos} />);
+  const inputElement = screen.getByPlaceholderText(/Add a new task here.../i);
+  const buttonElement = screen.getByRole("button", { name: /Add/i });
+  fireEvent.change(inputElement, { target: { value: "Walk the dog" } });
+  fireEvent.click(buttonElement);
+  expect(inputElement.value).toBe("");
+});
