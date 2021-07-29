@@ -41,4 +41,20 @@ describe("Todo component", () => {
     const toDoListItems = screen.getAllByTestId("task-container");
     expect(toDoListItems.length).toBe(4);
   });
+
+  // passed
+  test("task should not be completed when initially rendered", () => {
+    render(<MockToDo />);
+    addTask(["Walk the dog"]);
+    const toDoListItem = screen.getByText(/Walk the dog/i);
+    expect(toDoListItem).not.toHaveClass("todo-item-active");
+  });
+
+  // passed
+  /* test("task should be completed when we click on it", () => {
+    render(<MockToDo />);
+    addTask(["Walk the dog"]);
+    const toDoListItem = screen.getByText(/Walk the dog/i);
+    expect(toDoListItem).not.toHaveClass("todo-item-active");
+  }); */
 });
