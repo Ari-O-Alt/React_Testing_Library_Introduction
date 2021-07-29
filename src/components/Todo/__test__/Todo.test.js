@@ -10,6 +10,7 @@ const MockToDo = () => {
   );
 };
 
+// function to loop over the action of adding tasks to the page
 const addTask = (tasks) => {
   const inputElement = screen.getByPlaceholderText(/Add a new task here.../i);
   const buttonElement = screen.getByRole("button", { name: /Add/i });
@@ -23,10 +24,6 @@ describe("Todo component", () => {
   //passes
   test("the to do appears in the list after being added", () => {
     render(<MockToDo />);
-    /*  const inputElement = screen.getByPlaceholderText(/Add a new task here.../i);
-    const buttonElement = screen.getByRole("button", { name: /Add/i });
-    fireEvent.change(inputElement, { target: { value: "Walk the dog" } });
-    fireEvent.click(buttonElement); */
     addTask(["Walk the dog"]);
     const toDoListItem = screen.getByText(/Walk the dog/i);
     expect(toDoListItem).toBeInTheDocument();
@@ -35,10 +32,6 @@ describe("Todo component", () => {
   // passed
   test("multiple to dos appear in the list after being added", () => {
     render(<MockToDo />);
-    /*  const inputElement = screen.getByPlaceholderText(/Add a new task here.../i);
-    const buttonElement = screen.getByRole("button", { name: /Add/i });
-    fireEvent.change(inputElement, { target: { value: "Walk the dog" } });
-    fireEvent.click(buttonElement); */
     addTask([
       "Walk the dog",
       "Shop for groceries",
