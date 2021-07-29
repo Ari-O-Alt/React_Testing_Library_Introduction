@@ -51,10 +51,11 @@ describe("Todo component", () => {
   });
 
   // passed
-  /* test("task should be completed when we click on it", () => {
+  test("task should be completed when we click on it", () => {
     render(<MockToDo />);
     addTask(["Walk the dog"]);
     const toDoListItem = screen.getByText(/Walk the dog/i);
-    expect(toDoListItem).not.toHaveClass("todo-item-active");
-  }); */
+    fireEvent.click(toDoListItem);
+    expect(toDoListItem).toHaveClass("todo-item-active");
+  });
 });
