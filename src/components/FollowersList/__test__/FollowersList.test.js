@@ -30,3 +30,8 @@ describe("Followers list", () => {
     expect(followerCards.length).toBe(5);
   });
 });
+
+// testing the React part and the backend (APIs) at the same time might not be a good idea
+// API requests are expensive;
+// API requests make your test dependent on something from the outisde so if something is wrong with the API, your tests will fail
+// a better approach would be to tests API calls in isolation
