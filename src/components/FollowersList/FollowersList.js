@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function FollowersList() {
   const [followers, setFollowers] = useState([]);
 
-  useEffect(async () => {
+  /*  useEffect(async () => {
     fetchFollowers();
   }, []);
 
@@ -14,7 +14,21 @@ export default function FollowersList() {
     const { data } = await axios.get("https://randomuser.me/api/?results=5");
     console.log(data);
     setFollowers(data.results);
-  };
+  }; */
+
+  useEffect(() => {
+    let mounted = true;
+    const fetchData = async () => {
+      const response = await axios.get("https://randomuser.me/api/?results=5");
+      if (mounted) {
+        setFollowers(response.data.results);
+      }
+    };
+
+    fetchData();
+
+    return () => (mounted = false);
+  }, []);
 
   if (!followers) {
     return null;

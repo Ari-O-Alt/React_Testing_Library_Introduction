@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import FollowersList from "../FollowersList";
 const axios = require("axios");
@@ -46,6 +46,7 @@ describe("Followers list", () => {
     // we must await this since it takes a while to retrieve the followers
     // we must use findBy since getBy is not async
     const followerCard = await screen.findByTestId("follower-item-0");
+
     screen.debug();
     expect(followerCard).toBeInTheDocument();
   });
