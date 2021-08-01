@@ -6,20 +6,25 @@ import { Link } from "react-router-dom";
 export default function FollowersList() {
   const [followers, setFollowers] = useState([]);
 
-  useEffect(() => {
+  useEffect(async () => {
     fetchFollowers();
   }, []);
 
   const fetchFollowers = async () => {
     const { data } = await axios.get("https://randomuser.me/api/?results=5");
+    console.log(data);
     setFollowers(data.results);
   };
+
+  if (!followers) {
+    return null;
+  }
 
   return (
     <div className="followerslist-container">
       <div>
         {followers.map((follower, index) => (
-          <div className="follower-item">
+          <div className="follower-item" key={index}>
             <img src={follower.picture.large} />
             <div
               className="followers-details"
